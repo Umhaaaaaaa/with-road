@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>취급분야 및 제품소개 | 주식회사 로드 (+ROAD)</title>
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Pretendard', sans-serif; letter-spacing: -0.01em; }
         html { scroll-behavior: smooth; }
@@ -121,6 +121,7 @@
         .footer-brand .logo-text { font-size: 22px; font-weight: 800; color: #ffffff; margin-bottom: 12px; }
         .footer-copyright { font-size: 13px; color: #4a5568; }
         .footer-info { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 40px; font-size: 14px; color: #718096; line-height: 1.6; }
+        .info-item { display: flex; flex-direction: column; gap: 4px; }
 
         @media (max-width: 1100px) {
             .dashboard-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
@@ -150,6 +151,7 @@
                     </ul>
                 </li>
                 <li class="nav-item"><a href="product.html" style="color: #D4B996;">제품소개</a></li>
+                <li class="nav-item"><a href="performance.html">납품실적</a></li>
                 <li class="nav-item"><a href="index.html#contact-section">문의하기</a></li>
             </ul>
         </nav>
@@ -192,11 +194,12 @@
             <div class="separator-dashboard">
                 <div>
                     <div class="slider-view-panel">
-                        <div class="slide-track" id="robotTrack" style="width: 400%;">
-                            <div class="slide-item" style="width: 25%;"><img src="images/2.png" alt="Robot 1" class="blueprint-canvas"></div>
-                            <div class="slide-item" style="width: 25%;"><img src="images/3.png" alt="Robot 2" class="blueprint-canvas"></div>
-                            <div class="slide-item" style="width: 25%;"><img src="images/4.png" alt="Robot 3" class="blueprint-canvas"></div>
-                            <div class="slide-item" style="width: 25%;"><img src="images/5.png" alt="Robot 4" class="blueprint-canvas"></div>
+                        <div class="slide-track" id="robotTrack" style="width: 500%;">
+                            <div class="slide-item" style="width: 20%;"><img src="images/robotcamera.png" alt="Robot Camera" class="blueprint-canvas"></div>
+                            <div class="slide-item" style="width: 20%;"><img src="images/2.png" alt="Robot 1" class="blueprint-canvas"></div>
+                            <div class="slide-item" style="width: 20%;"><img src="images/3.png" alt="Robot 2" class="blueprint-canvas"></div>
+                            <div class="slide-item" style="width: 20%;"><img src="images/4.png" alt="Robot 3" class="blueprint-canvas"></div>
+                            <div class="slide-item" style="width: 20%;"><img src="images/5.png" alt="Robot 4" class="blueprint-canvas"></div>
                         </div>
                     </div>
                     <div class="slider-nav-container">
@@ -305,12 +308,16 @@
             document.getElementById('prevBtn').disabled = (currentSlideIdx === 0);
             document.getElementById('nextBtn').disabled = (currentSlideIdx === 1);
         }
+        
+        // 초고온 측정 로봇 스크립트 수정 구역 (5장 범위 맞춤)
         function changeRobotSlide(dir) {
-            robotSlideIdx = Math.max(0, Math.min(3, robotSlideIdx + dir));
-            document.getElementById('robotTrack').style.transform = `translateX(-${robotSlideIdx * 25}%)`;
+            // 한 칸 움직일 때 비율이 100% / 5장 = 20% 이므로, 최대 한계값(Max)을 4로 설정
+            robotSlideIdx = Math.max(0, Math.min(4, robotSlideIdx + dir));
+            document.getElementById('robotTrack').style.transform = `translateX(-${robotSlideIdx * 20}%)`;
             document.getElementById('robotPrevBtn').disabled = (robotSlideIdx === 0);
-            document.getElementById('robotNextBtn').disabled = (robotSlideIdx === 3);
+            document.getElementById('robotNextBtn').disabled = (robotSlideIdx === 4);
         }
+        
         function changeStopperSlide(dir) {
             stopperSlideIdx = Math.max(0, Math.min(1, stopperSlideIdx + dir));
             document.getElementById('stopperTrack').style.transform = `translateX(-${stopperSlideIdx * 50}%)`;
