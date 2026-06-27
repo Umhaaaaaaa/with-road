@@ -194,11 +194,11 @@
             <div class="separator-dashboard">
                 <div>
                     <div class="slider-view-panel">
-                        <div class="slide-track" id="robotTrack" style="width: 500%;">
-                            <div class="slide-item" style="width: 20%;"><img src="images/robotcamera.png" alt="Robot Camera" class="blueprint-canvas"></div>
-                            <div class="slide-item" style="width: 20%;"><img src="images/3.png" alt="Robot 2" class="blueprint-canvas"></div>
-                            <div class="slide-item" style="width: 20%;"><img src="images/4.png" alt="Robot 3" class="blueprint-canvas"></div>
-                            <div class="slide-item" style="width: 20%;"><img src="images/5.png" alt="Robot 4" class="blueprint-canvas"></div>
+                        <div class="slide-track" id="robotTrack" style="width: 400%;">
+                            <div class="slide-item" style="width: 25%;"><img src="images/robotcamera.png" alt="Robot Camera" class="blueprint-canvas"></div>
+                            <div class="slide-item" style="width: 25%;"><img src="images/3.png" alt="Robot 2" class="blueprint-canvas"></div>
+                            <div class="slide-item" style="width: 25%;"><img src="images/4.png" alt="Robot 3" class="blueprint-canvas"></div>
+                            <div class="slide-item" style="width: 25%;"><img src="images/5.png" alt="Robot 4" class="blueprint-canvas"></div>
                         </div>
                     </div>
                     <div class="slider-nav-container">
@@ -308,13 +308,12 @@
             document.getElementById('nextBtn').disabled = (currentSlideIdx === 1);
         }
         
-        // 초고온 측정 로봇 스크립트 수정 구역 (5장 범위 맞춤)
+        // 4장 운영을 위한 스크립트 반영 (이동 비율 25% / 최댓값 3 제한)
         function changeRobotSlide(dir) {
-            // 한 칸 움직일 때 비율이 100% / 5장 = 20% 이므로, 최대 한계값(Max)을 4로 설정
-            robotSlideIdx = Math.max(0, Math.min(4, robotSlideIdx + dir));
-            document.getElementById('robotTrack').style.transform = `translateX(-${robotSlideIdx * 20}%)`;
+            robotSlideIdx = Math.max(0, Math.min(3, robotSlideIdx + dir));
+            document.getElementById('robotTrack').style.transform = `translateX(-${robotSlideIdx * 25}%)`;
             document.getElementById('robotPrevBtn').disabled = (robotSlideIdx === 0);
-            document.getElementById('robotNextBtn').disabled = (robotSlideIdx === 4);
+            document.getElementById('robotNextBtn').disabled = (robotSlideIdx === 3);
         }
         
         function changeStopperSlide(dir) {
