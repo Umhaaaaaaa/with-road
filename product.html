@@ -111,9 +111,30 @@
         .spec-tab-view { display: none; animation: fadeIn 0.4s ease forwards; }
         .spec-tab-view.active { display: block; }
 
-        .spec-table { width: 100%; border-collapse: collapse; margin-bottom: 25px; font-size: 14px; text-align: center; }
-        .spec-table th { background: #0e1726; color: #D4B996; font-weight: 700; border: 1px solid rgba(255,255,255,0.08); padding: 11px 10px; }
-        .spec-table td { border: 1px solid rgba(255,255,255,0.06); padding: 11px 10px; color: #cbd5e1; }
+       /* 표 전체 글씨 크기 변경 (기존 14px -> 17px로 확대) */
+.spec-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-bottom: 25px; 
+    font-size: 17px; 
+    text-align: center; 
+}
+
+/* 표 제목행(th) 스타일 - 여백 및 글씨 크기 조정 */
+.spec-table th { 
+    background: #0e1726; 
+    color: #D4B996; 
+    font-weight: 700; 
+    border: 1px solid rgba(255,255,255,0.08); 
+    padding: 14px 10px; /* 위아래 여백을 11px에서 14px로 늘려 글씨 크기에 맞춤 */
+}
+
+/* 표 내용행(td) 스타일 - 여백 및 글씨 크기 조정 */
+.spec-table td { 
+    border: 1px solid rgba(255,255,255,0.06); 
+    padding: 14px 10px; /* 위아래 여백을 11px에서 14px로 늘려 글씨 크기에 맞춤 */
+    color: #cbd5e1; 
+}
         
         footer { background-color: #01050d; padding: 60px 8%; border-top: 1px solid rgba(255, 255, 255, 0.05); text-align: left; }
         .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 40px; align-items: flex-start; }
