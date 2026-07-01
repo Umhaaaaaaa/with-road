@@ -64,9 +64,9 @@
         .sub-visual-title { font-size: 46px; font-weight: 800; color: #ffffff; letter-spacing: -0.5px; margin-bottom: 12px; }
         .sub-visual-subtitle { font-size: 15px; font-weight: 600; color: #D4B996; text-transform: uppercase; letter-spacing: 3px; }
 
-        /* 대시보드 버튼 바 */
+        /* 대시보드 버튼 바 (자동 도어 장치 추가로 7열 조정) */
         .dashboard-section { background-color: #060d1f; padding: 60px 8%; border-bottom: 1px solid rgba(255,255,255,0.05); position: sticky; top: 85px; z-index: 900; backdrop-filter: blur(10px); background: rgba(6, 13, 31, 0.9); }
-        .dashboard-grid { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px; }
+        .dashboard-grid { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: repeat(7, 1fr); gap: 15px; }
         .prod-btn { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); border-top: 3px solid rgba(212, 185, 150, 0.3); border-radius: 4px; padding: 22px 10px; text-align: center; cursor: pointer; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 8px; }
         .prod-btn .btn-num { font-size: 12px; font-weight: 700; color: #D4B996; letter-spacing: 1px; }
         .prod-btn .btn-name { font-size: 15px; font-weight: 700; color: #cbd5e1; line-height: 1.3; word-break: keep-all; }
@@ -111,31 +111,81 @@
         .spec-tab-view { display: none; animation: fadeIn 0.4s ease forwards; }
         .spec-tab-view.active { display: block; }
 
-       /* 표 전체 글씨 크기 변경 (기존 14px -> 17px로 확대) */
-.spec-table { 
-    width: 100%; 
-    border-collapse: collapse; 
-    margin-bottom: 25px; 
-    font-size: 17px; 
-    text-align: center; 
-}
+        .spec-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-bottom: 25px; 
+            font-size: 17px; 
+            text-align: center; 
+        }
+        .spec-table th { 
+            background: #0e1726; 
+            color: #D4B996; 
+            font-weight: 700; 
+            border: 1px solid rgba(255,255,255,0.08); 
+            padding: 14px 10px; 
+        }
+        .spec-table td { 
+            border: 1px solid rgba(255,255,255,0.06); 
+            padding: 14px 10px; 
+            color: #cbd5e1; 
+        }
 
-/* 표 제목행(th) 스타일 - 여백 및 글씨 크기 조정 */
-.spec-table th { 
-    background: #0e1726; 
-    color: #D4B996; 
-    font-weight: 700; 
-    border: 1px solid rgba(255,255,255,0.08); 
-    padding: 14px 10px; /* 위아래 여백을 11px에서 14px로 늘려 글씨 크기에 맞춤 */
-}
+        /* 07 자동 도어 장치 및 특허 레이아웃 전용 보완 스타일 */
+        .product-patent-container {
+            display: flex; gap: 40px; align-items: stretch; margin-top: 40px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        .product-info-side { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+        .patent-showcase-side { width: 440px; flex-shrink: 0; }
+        .diagram-caption { 
+            text-align: center; margin-top: 14px; font-size: 13px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px; 
+            background: rgba(255,255,255,0.04); padding: 7px 0; border-radius: 4px; 
+        }
 
-/* 표 내용행(td) 스타일 - 여백 및 글씨 크기 조정 */
-.spec-table td { 
-    border: 1px solid rgba(255,255,255,0.06); 
-    padding: 14px 10px; /* 위아래 여백을 11px에서 14px로 늘려 글씨 크기에 맞춤 */
-    color: #cbd5e1; 
-}
-        
+        /* 특허 인증서 구조 스펙 */
+        .patent-showcase-wrap { margin-top: 15px; }
+        .patent-showcase-header { text-align: left; margin-bottom: 18px; }
+        .patent-showcase-title { font-size: 20px; font-weight: 800; color: #ffffff; margin-top: 4px; letter-spacing: -0.3px; }
+        .patent-cert-stage { width: 100%; position: relative; }
+        .patent-step-badge {
+            position: absolute; top: -14px; left: 18px; z-index: 5;
+            background: linear-gradient(135deg, #D4B996 0%, #B8996E 100%);
+            color: #1a120a; font-size: 11px; font-weight: 800; letter-spacing: 0.5px;
+            padding: 6px 14px; border-radius: 20px; box-shadow: 0 4px 12px rgba(212,185,150,0.3);
+        }
+        .patent-cert-frame {
+            position: relative; background: #ffffff; border-radius: 6px; padding: 14px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(212,185,150,0.2);
+            overflow: hidden; cursor: zoom-in; transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .patent-cert-frame::before {
+            content: ''; position: absolute; inset: 7px; border: 1px solid rgba(90,62,43,0.2); border-radius: 3px; pointer-events: none;
+        }
+        .patent-cert-frame:hover { transform: translateY(-3px); box-shadow: 0 28px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(212,185,150,0.35); }
+        .patent-cert-track { display: flex; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); width: 200%; }
+        .patent-cert-slide { width: 50%; flex-shrink: 0; }
+        .patent-cert-image { width: 100%; height: auto; display: block; border-radius: 2px; }
+        .patent-zoom-hint {
+            position: absolute; bottom: 20px; right: 20px; background: rgba(3,8,19,0.8); color: #D4B996;
+            font-size: 11px; font-weight: 600; padding: 6px 12px; border-radius: 20px; opacity: 0; transition: opacity 0.3s ease;
+        }
+        .patent-cert-frame:hover .patent-zoom-hint { opacity: 1; }
+        .patent-nav-dots { display: flex; justify-content: center; gap: 8px; margin-top: 15px; }
+        .patent-dot { width: 7px; height: 7px; border-radius: 50%; border: none; background: rgba(255,255,255,0.2); cursor: pointer; transition: all 0.3s ease; padding: 0; }
+        .patent-dot.active { background: #D4B996; width: 22px; border-radius: 4px; }
+        .patent-caption { text-align: center; margin-top: 12px; font-size: 13px; color: #cbd5e1; font-weight: 600; }
+
+        /* 라이트박스 전체화면 모달 */
+        .patent-lightbox {
+            display: none; position: fixed; inset: 0; background: rgba(2,6,15,0.94); backdrop-filter: blur(8px);
+            z-index: 9999; align-items: center; justify-content: center; cursor: zoom-out;
+        }
+        .patent-lightbox.active { display: flex; animation: patentFadeIn 0.2s ease; }
+        .patent-lightbox-img { max-width: 85%; max-height: 85vh; border-radius: 6px; box-shadow: 0 30px 80px rgba(0,0,0,0.7); cursor: default; }
+        .patent-lightbox-close { position: absolute; top: 30px; right: 40px; font-size: 32px; color: #ffffff; cursor: pointer; font-weight: 200; transition: color 0.2s ease; }
+        .patent-lightbox-close:hover { color: #D4B996; }
+        @keyframes patentFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
         footer { background-color: #01050d; padding: 60px 8%; border-top: 1px solid rgba(255, 255, 255, 0.05); text-align: left; }
         .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 40px; align-items: flex-start; }
         .footer-brand { justify-self: start; }
@@ -148,51 +198,9 @@
             .dashboard-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
             .product-detail-block { grid-template-columns: 1fr !important; padding: 80px 5%; }
             .separator-dashboard { grid-template-columns: 1fr; gap: 40px; padding: 30px; }
+            .product-patent-container { flex-direction: column; gap: 30px; }
+            .patent-showcase-side { width: 100%; max-width: 440px; margin: 0 auto; }
         }
-        /* 특허 인증서 쇼케이스 */
-.patent-showcase-wrap { margin-top: 40px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.06); }
-.patent-showcase-header { text-align: center; margin-bottom: 30px; }
-.patent-showcase-title { font-size: 24px; font-weight: 800; color: #ffffff; margin-top: 8px; letter-spacing: -0.3px; }
-.patent-cert-stage { max-width: 480px; margin: 0 auto; position: relative; }
-.patent-step-badge {
-    position: absolute; top: -14px; left: 20px; z-index: 5;
-    background: linear-gradient(135deg, #D4B996 0%, #B8996E 100%);
-    color: #1a120a; font-size: 12px; font-weight: 800; letter-spacing: 0.5px;
-    padding: 7px 16px; border-radius: 20px; box-shadow: 0 4px 12px rgba(212,185,150,0.4);
-    transition: all 0.3s ease;
-}
-.patent-cert-frame {
-    position: relative; background: #ffffff; border-radius: 6px; padding: 14px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(212,185,150,0.25);
-    overflow: hidden; cursor: zoom-in; transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.patent-cert-frame::before {
-    content: ''; position: absolute; inset: 6px; border: 1px solid rgba(90,62,43,0.25); border-radius: 3px; pointer-events: none;
-}
-.patent-cert-frame:hover { transform: translateY(-4px); box-shadow: 0 28px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(212,185,150,0.4); }
-.patent-cert-track { display: flex; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); width: 200%; }
-.patent-cert-slide { width: 50%; flex-shrink: 0; }
-.patent-cert-image { width: 100%; height: auto; display: block; border-radius: 2px; }
-.patent-zoom-hint {
-    position: absolute; bottom: 20px; right: 20px; background: rgba(3,8,19,0.75); color: #D4B996;
-    font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 20px; opacity: 0; transition: opacity 0.3s ease;
-}
-.patent-cert-frame:hover .patent-zoom-hint { opacity: 1; }
-.patent-nav-dots { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
-.patent-dot { width: 8px; height: 8px; border-radius: 50%; border: none; background: rgba(255,255,255,0.2); cursor: pointer; transition: all 0.3s ease; padding: 0; }
-.patent-dot.active { background: #D4B996; width: 26px; border-radius: 4px; }
-.patent-caption { text-align: center; margin-top: 16px; font-size: 14px; color: #cbd5e1; font-weight: 600; }
-
-/* 특허 라이트박스(확대보기) */
-.patent-lightbox {
-    display: none; position: fixed; inset: 0; background: rgba(2,6,15,0.92); backdrop-filter: blur(6px);
-    z-index: 3000; align-items: center; justify-content: center; cursor: zoom-out;
-}
-.patent-lightbox.active { display: flex; animation: patentFadeIn 0.25s ease; }
-.patent-lightbox-img { max-width: 85%; max-height: 85%; border-radius: 6px; box-shadow: 0 30px 80px rgba(0,0,0,0.7); cursor: default; }
-.patent-lightbox-close { position: absolute; top: 30px; right: 40px; font-size: 28px; color: #ffffff; cursor: pointer; font-weight: 300; transition: color 0.2s ease; }
-.patent-lightbox-close:hover { color: #D4B996; }
-@keyframes patentFadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
@@ -241,6 +249,7 @@
             <div class="prod-btn" onclick="scrollToProduct('prod-separator')"><span class="btn-num">04</span><span class="btn-name">원심분리기</span></div>
             <div class="prod-btn" onclick="scrollToProduct('prod-scaffold')"><span class="btn-num">05</span><span class="btn-name">안전 발판<br>자동화</span></div>
             <div class="prod-btn" onclick="scrollToProduct('prod-crane')"><span class="btn-num">06</span><span class="btn-name">크레인시스템</span></div>
+            <div class="prod-btn" onclick="scrollToProduct('prod-autodoor')"><span class="btn-num">07</span><span class="btn-name">자동 도어<br>장치</span></div>
         </div>
     </section>
 
@@ -265,28 +274,6 @@
                             <div class="slide-item" style="width: 25%;"><img src="images/4.png" alt="Robot 3" class="blueprint-canvas"></div>
                             <div class="slide-item" style="width: 25%;"><img src="images/5.png" alt="Robot 4" class="blueprint-canvas"></div>
                         </div>
-                        <div class="patent-showcase-wrap">
-        <div class="patent-showcase-header">
-            <span class="prod-index">Intellectual Property</span>
-            <h3 class="patent-showcase-title">특허 인증서</h3>
-        </div>
-
-        <div class="patent-cert-stage">
-            <div class="patent-step-badge" id="patentStepBadge">STEP 01 · 출원번호통지서</div>
-            <div class="patent-cert-frame" onclick="openPatentLightbox()">
-                <div class="patent-cert-track" id="patentTrack">
-                    <div class="patent-cert-slide"><img src="images/tt.jpg" alt="특허 출원번호통지서" class="patent-cert-image"></div>
-                    <div class="patent-cert-slide"><img src="images/t.jpg" alt="특허증" class="patent-cert-image"></div>
-                </div>
-                <div class="patent-zoom-hint">🔍 클릭하여 확대보기</div>
-            </div>
-            <div class="patent-nav-dots">
-                <button class="patent-dot active" onclick="goPatentSlide(0)"></button>
-                <button class="patent-dot" onclick="goPatentSlide(1)"></button>
-            </div>
-            <div class="patent-caption" id="patentCaption">특허 출원번호통지서 (출원 접수 완료)</div>
-        </div>
-    </div>
                     </div>
                     <div class="slider-nav-container">
                         <button class="slide-ctrl-btn" id="robotPrevBtn" onclick="changeRobotSlide(-1)" disabled>◀</button>
@@ -351,6 +338,40 @@
                     </div>
                 </div>
             </div>
+
+            <div class="product-patent-container">
+                <div class="product-info-side">
+                    <span class="prod-index" style="margin-bottom:10px;">Technical Patent</span>
+                    <h3 style="font-size: 24px; font-weight:800; color:#fff; margin-bottom:15px;">검증된 원심분리 고도 기술력</h3>
+                    <p style="color:#94a3b8; font-size:15px; line-height:1.7;">
+                        로드(+ROAD)의 원심분리기 장치는 고속 제어 설계와 독자적인 아키텍처 기술이 결합되었습니다. 
+                        출원번호통지서 통과 및 특허 인증 처리를 바탕으로 신뢰할 수 있는 구동 안정성을 입증합니다. 
+                        우측 실물 인증서 프레임을 클릭하시면 고해상도로 상세히 확인하실 수 있습니다.
+                    </p>
+                </div>
+                <div class="patent-showcase-side">
+                    <div class="patent-showcase-wrap">
+                        <div class="patent-showcase-header">
+                            <h4 class="patent-showcase-title">특허 인증 내역</h4>
+                        </div>
+                        <div class="patent-cert-stage">
+                            <div class="patent-step-badge" id="patentStepBadge">STEP 01 · 출원번호통지서</div>
+                            <div class="patent-cert-frame" onclick="openPatentLightbox()">
+                                <div class="patent-cert-track" id="patentTrack">
+                                    <div class="patent-cert-slide"><img src="images/tt.jpg" alt="특허 출원번호통지서" class="patent-cert-image"></div>
+                                    <div class="patent-cert-slide"><img src="images/t.jpg" alt="특허증" class="patent-cert-image"></div>
+                                </div>
+                                <div class="patent-zoom-hint">🔍 클릭하여 확대보기</div>
+                            </div>
+                            <div class="patent-nav-dots">
+                                <button class="patent-dot active" onclick="goPatentSlide(0)"></button>
+                                <button class="patent-dot" onclick="goPatentSlide(1)"></button>
+                            </div>
+                            <div class="patent-caption" id="patentCaption">특허 출원번호통지서 (출원 접수 완료)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="product-detail-block no-image-block" id="prod-scaffold">
@@ -366,6 +387,56 @@
                 <div class="spec-group"><div class="spec-label">시스템 개요</div><p class="spec-text">코일 야적장 및 중중량물 물류창고 내 천장 크레인의 권상, 주행, 횡행 모션을 종합 지휘하는 프리미엄 스마트 무인 크레인 제어 솔루션입니다.</p></div>
             </div>
         </div>
+
+        <div class="product-detail-block separator-wide-block" id="prod-autodoor">
+            <div class="prod-info-left" style="text-align: center; margin-bottom: 5px;">
+                <span class="prod-index">System 07</span>
+                <h2 class="prod-title" style="margin-bottom: 25px;">자동 도어 장치</h2>
+            </div>
+            <div class="separator-dashboard">
+                <div>
+                    <div class="slider-view-panel" style="overflow: hidden;">
+                        <div class="slide-track" id="autodoorTrack" style="width: 200%; display: flex; transition: transform 0.5s ease;">
+                            <div class="slide-item" style="width: 50%;"><img src="images/out1.png" alt="구성도" class="blueprint-canvas"></div>
+                            <div class="slide-item" style="width: 50%;"><img src="images/outin.png" alt="설치도" class="blueprint-canvas"></div>
+                        </div>
+                    </div>
+                    <div class="slider-nav-container">
+                        <button class="slide-ctrl-btn" id="autodoorPrevBtn" onclick="changeAutodoorSlide(-1)" disabled>◀</button>
+                        <button class="slide-ctrl-btn" id="autodoorNextBtn" onclick="changeAutodoorSlide(1)">▶</button>
+                    </div>
+                    <div class="diagram-caption" id="autodoorCaption">구성도</div>
+                </div>
+                <div class="spec-content-panel">
+                    <div class="spec-tab-view active">
+                        <table class="spec-table" style="font-size:14px;">
+                            <thead>
+                                <tr><th colspan="8" style="background:#0a111c; color:#ffffff;">제 원 사 양 (SPECIFICATION)</th></tr>
+                                <tr>
+                                    <th>MODEL</th><th>길이</th><th>높이</th><th>폭</th>
+                                    <th style="color:#D4B996;">*전원 구분</th><th>제어 사양</th><th>구동/옵션</th><th>비고</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>R8115</td><td>820</td><td>100</td><td>115</td><td style="color:#D4B996; font-weight:700;">*motor</td><td>스윙 제어</td><td>-</td><td>T00NA4</td></tr>
+                                <tr><td>R9115</td><td>965</td><td>105</td><td>115</td><td style="color:#D4B996; font-weight:700;">*sensor</td><td>RX UTP</td><td>TX UTP</td><td>T00NA5</td></tr>
+                                <tr><td>R18187</td><td>1800L</td><td>1800H</td><td>700W</td><td style="color:#D4B996; font-weight:700;">*작동 방법</td><td>반자동</td><td>비상정지</td><td>자동닫힘</td></tr>
+                                <tr><td>R20201</td><td>2000L</td><td>2000H</td><td>1000W</td><td style="color:#D4B996; font-weight:700;">*컨트롤박스</td><td>220*280*110</td><td>비상시</td><td>경광등</td></tr>
+                                <tr><td>R-S</td><td colspan="3" style="color:#D4B996; font-weight:600;">주문 제작</td><td style="color:#D4B996; font-weight:700;">*재질</td><td>알미늄,청동</td><td>리모컨</td><td>선택</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="spec-group">
+                        <div class="spec-label">시스템 개요</div>
+                        <p class="spec-text">출입구 게이트의 안정적인 자동 및 반자동 개폐를 조율하는 고부하 스윙 방식 자동 도어 장치 솔루션입니다. 고감도 유기적 감지 센서 시스템과 파워 드라이브 모터가 상호 연동 동작합니다.</p>
+                    </div>
+                    <div class="spec-group">
+                        <div class="spec-label">핵심 스펙 기술</div>
+                        <p class="spec-text">내식성이 높은 고성능 알루미늄 및 청동 하우징 재질을 기반으로 설계되어 광범위한 산업 온도 범위를 보장합니다. 제어 장치 연동 알람 경광등 및 정전 화재 등 예기치 못한 비상 상황 발생 시 긴급 수동 전환 및 자동 닫힘 안전 기구를 포함합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <footer>
@@ -376,7 +447,12 @@
                 <div class="info-item"><span class="info-title">Official E-mail</span><span class="info-value">usjsf@hanmail.net</span></div>
             </div>
         </div>
-    </footer>
+    </section>
+
+    <div class="patent-lightbox" id="patentLightbox" onclick="closePatentLightbox()">
+        <span class="patent-lightbox-close" onclick="closePatentLightbox()">✕</span>
+        <img src="" alt="특허 확대" class="patent-lightbox-img" id="patentLightboxImg" onclick="event.stopPropagation()">
+    </div>
 
     <script type="text/javascript">
         function scrollToProduct(id) {
@@ -387,7 +463,10 @@
             }
         }
 
-        let currentSlideIdx = 0, robotSlideIdx = 0, stopperSlideIdx = 0;
+        // 각 슬라이더 인덱스 관리자 전역 변수
+        let currentSlideIdx = 0, robotSlideIdx = 0, stopperSlideIdx = 0, autodoorSlideIdx = 0, patentSlideIdx = 0;
+        
+        // System 04 원심분리기 기본 도면 트랙 컨트롤
         function changeSlide(dir) {
             currentSlideIdx = Math.max(0, Math.min(1, currentSlideIdx + dir));
             document.getElementById('blueprintTrack').style.transform = `translateX(-${currentSlideIdx * 50}%)`;
@@ -395,7 +474,7 @@
             document.getElementById('nextBtn').disabled = (currentSlideIdx === 1);
         }
         
-        // 4장 운영을 위한 스크립트 반영 (이동 비율 25% / 최댓값 3 제한)
+        // System 02 초고온 측정 로봇 시스템 도면 제어 (4장 구성)
         function changeRobotSlide(dir) {
             robotSlideIdx = Math.max(0, Math.min(3, robotSlideIdx + dir));
             document.getElementById('robotTrack').style.transform = `translateX(-${robotSlideIdx * 25}%)`;
@@ -403,6 +482,7 @@
             document.getElementById('robotNextBtn').disabled = (robotSlideIdx === 3);
         }
         
+        // System 03 레일 스토퍼 시스템 도면 제어
         function changeStopperSlide(dir) {
             stopperSlideIdx = Math.max(0, Math.min(1, stopperSlideIdx + dir));
             document.getElementById('stopperTrack').style.transform = `translateX(-${stopperSlideIdx * 50}%)`;
@@ -410,6 +490,42 @@
             document.getElementById('stopperNextBtn').disabled = (stopperSlideIdx === 1);
         }
 
+        // System 07 자동 도어 장치 도면 전환 및 동적 하단 글씨(캡션) 매칭 로직
+        const autodoorLabels = ['구성도', '설치도'];
+        function changeAutodoorSlide(dir) {
+            autodoorSlideIdx = Math.max(0, Math.min(1, autodoorSlideIdx + dir));
+            document.getElementById('autodoorTrack').style.transform = `translateX(-${autodoorSlideIdx * 50}%)`;
+            document.getElementById('autodoorPrevBtn').disabled = (autodoorSlideIdx === 0);
+            document.getElementById('autodoorNextBtn').disabled = (autodoorSlideIdx === 1);
+            document.getElementById('autodoorCaption').innerText = autodoorLabels[autodoorSlideIdx];
+        }
+
+        // 원심분리기 기술 특허 슬라이더 레이블 및 인터랙션 스크립트
+        const patentLabels = [
+            { badge: 'STEP 01 · 출원번호통지서', caption: '특허 출원번호통지서 (출원 접수 완료)' },
+            { badge: 'STEP 02 · 특허증', caption: '특허증 (정식 등록 완료)' }
+        ];
+        function goPatentSlide(idx) {
+            patentSlideIdx = idx;
+            document.getElementById('patentTrack').style.transform = `translateX(-${idx * 50}%)`;
+            document.getElementById('patentStepBadge').innerText = patentLabels[idx].badge;
+            document.getElementById('patentCaption').innerText = patentLabels[idx].caption;
+            document.querySelectorAll('.patent-dot').forEach((dot, i) => dot.classList.toggle('active', i === idx));
+        }
+
+        // 모달 라이트박스 제어 기법 (확대 시 본체 스크롤 중지 차단 기믹 포함)
+        function openPatentLightbox() {
+            const imgSrc = patentSlideIdx === 0 ? 'images/tt.jpg' : 'images/t.jpg';
+            document.getElementById('patentLightboxImg').src = imgSrc;
+            document.getElementById('patentLightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closePatentLightbox() {
+            document.getElementById('patentLightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // 구글 번역 연동 환경
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({ pageLanguage: 'ko', includedLanguages: 'ko,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
         }
@@ -424,31 +540,7 @@
             if (select) { select.value = langCode; select.dispatchEvent(new Event('change')); }
             else { setTimeout(() => { changeGoogleLanguage(langCode); }, 300); }
         }
-        let patentSlideIdx = 0;
-const patentLabels = [
-    { badge: 'STEP 01 · 출원번호통지서', caption: '특허 출원번호통지서 (출원 접수 완료)' },
-    { badge: 'STEP 02 · 특허증', caption: '특허증 (정식 등록 완료)' }
-];
-function goPatentSlide(idx) {
-    patentSlideIdx = idx;
-    document.getElementById('patentTrack').style.transform = `translateX(-${idx * 50}%)`;
-    document.getElementById('patentStepBadge').innerText = patentLabels[idx].badge;
-    document.getElementById('patentCaption').innerText = patentLabels[idx].caption;
-    document.querySelectorAll('.patent-dot').forEach((dot, i) => dot.classList.toggle('active', i === idx));
-}
-function openPatentLightbox() {
-    const imgSrc = patentSlideIdx === 0 ? 'images/tt.jpg' : 'images/t.jpg';
-    document.getElementById('patentLightboxImg').src = imgSrc;
-    document.getElementById('patentLightbox').classList.add('active');
-}
-function closePatentLightbox() {
-    document.getElementById('patentLightbox').classList.remove('active');
-}
     </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<div class="patent-lightbox" id="patentLightbox" onclick="closePatentLightbox()">
-    <span class="patent-lightbox-close" onclick="closePatentLightbox()">✕</span>
-    <img src="" alt="특허 확대" class="patent-lightbox-img" id="patentLightboxImg" onclick="event.stopPropagation()">
-</div>
 </body>
 </html>
