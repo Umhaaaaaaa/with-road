@@ -149,6 +149,50 @@
             .product-detail-block { grid-template-columns: 1fr !important; padding: 80px 5%; }
             .separator-dashboard { grid-template-columns: 1fr; gap: 40px; padding: 30px; }
         }
+        /* 특허 인증서 쇼케이스 */
+.patent-showcase-wrap { margin-top: 40px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.06); }
+.patent-showcase-header { text-align: center; margin-bottom: 30px; }
+.patent-showcase-title { font-size: 24px; font-weight: 800; color: #ffffff; margin-top: 8px; letter-spacing: -0.3px; }
+.patent-cert-stage { max-width: 480px; margin: 0 auto; position: relative; }
+.patent-step-badge {
+    position: absolute; top: -14px; left: 20px; z-index: 5;
+    background: linear-gradient(135deg, #D4B996 0%, #B8996E 100%);
+    color: #1a120a; font-size: 12px; font-weight: 800; letter-spacing: 0.5px;
+    padding: 7px 16px; border-radius: 20px; box-shadow: 0 4px 12px rgba(212,185,150,0.4);
+    transition: all 0.3s ease;
+}
+.patent-cert-frame {
+    position: relative; background: #ffffff; border-radius: 6px; padding: 14px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(212,185,150,0.25);
+    overflow: hidden; cursor: zoom-in; transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.patent-cert-frame::before {
+    content: ''; position: absolute; inset: 6px; border: 1px solid rgba(90,62,43,0.25); border-radius: 3px; pointer-events: none;
+}
+.patent-cert-frame:hover { transform: translateY(-4px); box-shadow: 0 28px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(212,185,150,0.4); }
+.patent-cert-track { display: flex; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); width: 200%; }
+.patent-cert-slide { width: 50%; flex-shrink: 0; }
+.patent-cert-image { width: 100%; height: auto; display: block; border-radius: 2px; }
+.patent-zoom-hint {
+    position: absolute; bottom: 20px; right: 20px; background: rgba(3,8,19,0.75); color: #D4B996;
+    font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 20px; opacity: 0; transition: opacity 0.3s ease;
+}
+.patent-cert-frame:hover .patent-zoom-hint { opacity: 1; }
+.patent-nav-dots { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
+.patent-dot { width: 8px; height: 8px; border-radius: 50%; border: none; background: rgba(255,255,255,0.2); cursor: pointer; transition: all 0.3s ease; padding: 0; }
+.patent-dot.active { background: #D4B996; width: 26px; border-radius: 4px; }
+.patent-caption { text-align: center; margin-top: 16px; font-size: 14px; color: #cbd5e1; font-weight: 600; }
+
+/* 특허 라이트박스(확대보기) */
+.patent-lightbox {
+    display: none; position: fixed; inset: 0; background: rgba(2,6,15,0.92); backdrop-filter: blur(6px);
+    z-index: 3000; align-items: center; justify-content: center; cursor: zoom-out;
+}
+.patent-lightbox.active { display: flex; animation: patentFadeIn 0.25s ease; }
+.patent-lightbox-img { max-width: 85%; max-height: 85%; border-radius: 6px; box-shadow: 0 30px 80px rgba(0,0,0,0.7); cursor: default; }
+.patent-lightbox-close { position: absolute; top: 30px; right: 40px; font-size: 28px; color: #ffffff; cursor: pointer; font-weight: 300; transition: color 0.2s ease; }
+.patent-lightbox-close:hover { color: #D4B996; }
+@keyframes patentFadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
@@ -221,6 +265,28 @@
                             <div class="slide-item" style="width: 25%;"><img src="images/4.png" alt="Robot 3" class="blueprint-canvas"></div>
                             <div class="slide-item" style="width: 25%;"><img src="images/5.png" alt="Robot 4" class="blueprint-canvas"></div>
                         </div>
+                        <div class="patent-showcase-wrap">
+        <div class="patent-showcase-header">
+            <span class="prod-index">Intellectual Property</span>
+            <h3 class="patent-showcase-title">특허 인증서</h3>
+        </div>
+
+        <div class="patent-cert-stage">
+            <div class="patent-step-badge" id="patentStepBadge">STEP 01 · 출원번호통지서</div>
+            <div class="patent-cert-frame" onclick="openPatentLightbox()">
+                <div class="patent-cert-track" id="patentTrack">
+                    <div class="patent-cert-slide"><img src="images/tt.jpg" alt="특허 출원번호통지서" class="patent-cert-image"></div>
+                    <div class="patent-cert-slide"><img src="images/t.jpg" alt="특허증" class="patent-cert-image"></div>
+                </div>
+                <div class="patent-zoom-hint">🔍 클릭하여 확대보기</div>
+            </div>
+            <div class="patent-nav-dots">
+                <button class="patent-dot active" onclick="goPatentSlide(0)"></button>
+                <button class="patent-dot" onclick="goPatentSlide(1)"></button>
+            </div>
+            <div class="patent-caption" id="patentCaption">특허 출원번호통지서 (출원 접수 완료)</div>
+        </div>
+    </div>
                     </div>
                     <div class="slider-nav-container">
                         <button class="slide-ctrl-btn" id="robotPrevBtn" onclick="changeRobotSlide(-1)" disabled>◀</button>
@@ -358,7 +424,31 @@
             if (select) { select.value = langCode; select.dispatchEvent(new Event('change')); }
             else { setTimeout(() => { changeGoogleLanguage(langCode); }, 300); }
         }
+        let patentSlideIdx = 0;
+const patentLabels = [
+    { badge: 'STEP 01 · 출원번호통지서', caption: '특허 출원번호통지서 (출원 접수 완료)' },
+    { badge: 'STEP 02 · 특허증', caption: '특허증 (정식 등록 완료)' }
+];
+function goPatentSlide(idx) {
+    patentSlideIdx = idx;
+    document.getElementById('patentTrack').style.transform = `translateX(-${idx * 50}%)`;
+    document.getElementById('patentStepBadge').innerText = patentLabels[idx].badge;
+    document.getElementById('patentCaption').innerText = patentLabels[idx].caption;
+    document.querySelectorAll('.patent-dot').forEach((dot, i) => dot.classList.toggle('active', i === idx));
+}
+function openPatentLightbox() {
+    const imgSrc = patentSlideIdx === 0 ? 'images/tt.jpg' : 'images/t.jpg';
+    document.getElementById('patentLightboxImg').src = imgSrc;
+    document.getElementById('patentLightbox').classList.add('active');
+}
+function closePatentLightbox() {
+    document.getElementById('patentLightbox').classList.remove('active');
+}
     </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<div class="patent-lightbox" id="patentLightbox" onclick="closePatentLightbox()">
+    <span class="patent-lightbox-close" onclick="closePatentLightbox()">✕</span>
+    <img src="" alt="특허 확대" class="patent-lightbox-img" id="patentLightboxImg" onclick="event.stopPropagation()">
+</div>
 </body>
 </html>
