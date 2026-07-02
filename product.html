@@ -304,12 +304,16 @@
             <div class="separator-dashboard">
                 <div>
                     <div class="slider-view-panel">
-                        <div class="slide-track" id="robotTrack" style="width: 400%;">
-                            <div class="slide-item" style="width: 25%;"><img src="images/robotcamera.PNG" alt="Robot Camera" class="blueprint-canvas"></div>
-                            <div class="slide-item" style="width: 25%;"><img src="images/3.png" alt="Robot 2" class="blueprint-canvas"></div>
-                            <div class="slide-item" style="width: 25%;"><img src="images/4.png" alt="Robot 3" class="blueprint-canvas"></div>
-                            <div class="slide-item" style="width: 25%;"><img src="images/5.png" alt="Robot 4" class="blueprint-canvas"></div>
-                        </div>
+                       <div id="robotTrack" style="width: 500%; display: flex; transition: transform 0.5s;">
+    <div class="slide-item"><img src="기존도면1.png" alt="도면1"></div>
+    <div class="slide-item"><img src="기존도면2.png" alt="도면2"></div>
+    <div class="slide-item"><img src="기존도면3.png" alt="도면3"></div>
+    <div class="slide-item"><img src="기존도면4.png" alt="도면4"></div>
+    
+    <div class="slide-item">
+        <img src="ss.png" alt="초고온 측정 로봇 도면 추가" style="width: 100%; height: auto;">
+    </div>
+</div>
                     </div>
                     <div class="slider-nav-container">
                         <button class="slide-ctrl-btn" id="robotPrevBtn" onclick="changeRobotSlide(-1)" disabled>◀</button>
@@ -525,13 +529,19 @@
             document.getElementById('nextBtn').disabled = (currentSlideIdx === 2);
         }
         
-        // System 02 초고온 측정 로봇 시스템 도면 제어 (4장 구성)
-        function changeRobotSlide(dir) {
-            robotSlideIdx = Math.max(0, Math.min(3, robotSlideIdx + dir));
-            document.getElementById('robotTrack').style.transform = `translateX(-${robotSlideIdx * 25}%)`;
-            document.getElementById('robotPrevBtn').disabled = (robotSlideIdx === 0);
-            document.getElementById('robotNextBtn').disabled = (robotSlideIdx === 3);
-        }
+     // System 02 초고온 측정 로봇 시스템 도면 제어 (5장 구성으로 변경)
+function changeRobotSlide(dir) {
+    // 3에서 4로 변경 (총 5장이므로 인덱스는 0, 1, 2, 3, 4)
+    robotSlideIdx = Math.max(0, Math.min(4, robotSlideIdx + dir)); 
+    
+    // 100% / 5장 = 한 장당 20%씩 이동하도록 변경 (기존은 25%)
+    document.getElementById('robotTrack').style.transform = `translateX(-${robotSlideIdx * 20}%)`;
+    
+    document.getElementById('robotPrevBtn').disabled = (robotSlideIdx === 0);
+    
+    // 3에서 4로 변경
+    document.getElementById('robotNextBtn').disabled = (robotSlideIdx === 4); 
+}
         
         // System 03 레일 스토퍼 시스템 도면 제어
         function changeStopperSlide(dir) {
