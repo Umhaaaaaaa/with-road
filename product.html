@@ -1,4 +1,4 @@
-ㅁ<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -164,11 +164,32 @@
             color: #cbd5e1; 
         }
 
+        /* 깔끔하게 개선된 특허 컨테이너 및 내부 슬라이드 스타일 */
         .product-patent-container {
-            display: flex; gap: 40px; align-items: stretch; margin-top: 40px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.06); width: 100%;
+            display: flex; gap: 50px; align-items: center; margin-top: 50px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.06); width: 100%;
         }
-        .product-info-side { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-        .patent-showcase-side { width: 440px; flex-shrink: 0; }
+        .product-info-side { flex: 1; }
+        .patent-showcase-side { width: 400px; flex-shrink: 0; }
+        
+        .patent-cert-frame { 
+            position: relative; width: 100%; overflow: hidden; background: #0b1220; 
+            border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 20px; 
+            cursor: pointer; box-shadow: 0 15px 35px rgba(0,0,0,0.3); transition: all 0.3s ease;
+        }
+        .patent-cert-frame:hover { border-color: #D4B996; transform: translateY(-3px); box-shadow: 0 20px 45px rgba(0,0,0,0.5); }
+        .patent-cert-track { display: flex; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); width: 200%; }
+        .patent-cert-slide { width: 50%; display: flex; justify-content: center; align-items: center; }
+        .patent-cert-image { width: 100%; height: auto; max-height: 420px; object-fit: contain; border-radius: 4px; }
+        
+        .patent-step-badge { font-size: 12px; font-weight: 700; color: #D4B996; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; text-align: center; }
+        .patent-nav-dots { display: flex; justify-content: center; gap: 8px; margin: 15px 0 10px 0; }
+        .patent-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.2); border: none; cursor: pointer; transition: all 0.2s ease; }
+        .patent-dot.active { background: #D4B996; width: 20px; border-radius: 4px; }
+        .patent-caption { text-align: center; font-size: 13px; color: #94a3b8; font-weight: 500; }
+        
+        .patent-zoom-hint { position: absolute; bottom: 30px; right: 30px; background: rgba(3, 8, 19, 0.8); backdrop-filter: blur(4px); color: #D4B996; font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 4px; border: 1px solid rgba(212,185,150,0.3); opacity: 0; transition: opacity 0.2s ease; }
+        .patent-cert-frame:hover .patent-zoom-hint { opacity: 1; }
+
         .diagram-caption { 
             text-align: center; margin-top: 14px; font-size: 13px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px; 
             background: rgba(255,255,255,0.04); padding: 7px 0; border-radius: 4px; 
@@ -213,7 +234,7 @@
             .product-detail-block { grid-template-columns: 1fr !important; padding: 80px 5%; }
             .separator-dashboard { grid-template-columns: 1fr; gap: 40px; padding: 30px; }
             .product-patent-container { flex-direction: column; gap: 30px; }
-            .patent-showcase-side { width: 100%; max-width: 440px; margin: 0 auto; }
+            .patent-showcase-side { width: 100%; max-width: 400px; margin: 0 auto; }
         }
     </style>
 </head>
@@ -347,55 +368,57 @@
             </div>
         </div>
 
-        <div class="product-detail-block separator-wide-block" id="prod-separator">
-            <div class="prod-info-left" style="text-align: center;">
-                <span class="prod-index">System 04</span>
-                <h2 class="prod-title" style="margin-bottom: 25px;">고효율 원심분리기 시스템</h2>
-            </div>
-            <div class="separator-dashboard">
-                <div class="pdf-viewer-container">
-                    
-                    <div class="spec-content-panel">
-                        <div class="spec-tab-view active">
-                            <table class="spec-table">
-                                <thead><tr><th>재질</th><th colspan="4">SUS (Stainless Steel)</th></tr></thead>
-                                <tbody>
-                                    <tr><td>R15</td><td>1500L</td><td>1100H</td><td>600W</td><td>표준형</td></tr>
-                                    <tr><td>R20</td><td>2000L</td><td>2000H</td><td>1000W</td><td>고용량</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="viewer-controls-header">
-                        <div class="viewer-tabs">
-                            <button class="viewer-tab-btn active" id="centrifugeTabDrawing" onclick="switchCentrifugeView('drawing')">📐 도면보기</button>
-                            <button class="viewer-tab-btn" id="centrifugeTabFile" onclick="switchCentrifugeView('file')">📄 사양서보기</button>
-                        </div>
-                        <button class="pdf-zoom-trigger-btn" id="centrifugeZoomBtn" onclick="openMaxPdfModal('files/필터 원심 분리기 제품 사양 ROAD.pdf', '원심분리기 제품 사양서')">🔍 사양서 크게보기</button>
-                    </div>
-
-                    <div class="slider-view-panel" id="centrifugeDrawingPanel">
-                        <div class="slide-track" id="blueprintTrack" style="width: 300%;">
-                            <div class="slide-item" style="width: 33.3333%;"><img src="images/oneshim.png" alt="Horizontal"></div>
-                            <div class="slide-item" style="width: 33.3333%;"><img src="images/vertical22.png" alt="Vertical"></div>
-                            <div class="slide-item" style="width: 33.3333%;"><img src="images/vertical33.png" alt="Vertical 2"></div>
-                        </div>
-                    </div>
-                    <div class="pdf-scroll-viewer" id="centrifugePdfPanel">
-                        <div class="pdf-status-text" id="centrifugePdfStatus">PDF 불러오는 중...</div>
-                    </div>
-                    <div class="slider-nav-container" id="centrifugeDrawingNav">
-                        <button class="slide-ctrl-btn" id="prevBtn" onclick="changeSlide(-1)" disabled>◀</button>
-                        <button class="slide-ctrl-btn" id="nextBtn" onclick="changeSlide(1)">▶</button>
-                    </div>
-                    <div class="patent-notice-tag">본 기술은 특허 출원 중인 당사 고유의 지적재산권입니다.</div>
-                    <a class="file-view-link" href="files/필터 원심 분리기 제품 사양 ROAD.pdf" target="_blank" rel="noopener">📄 필터 원심 분리기 제품 사양 ROAD.pdf 새 창 보기</a>
-                </div>
+        <div class="product-detail-block separator-wide-block" id="prod-separator" style="padding-bottom: 60px;">
+            <div class="separator-dashboard" style="grid-template-columns: 1fr; border: none; background: none; padding: 0;">
                 
-                <div class="prod-data-right" style="padding: 0; background: none; border: none; align-self: center;">
-                    <div class="spec-group"><div class="spec-label">시스템 개요</div><p class="spec-text">원심력을 활용하여 복합 산업 슬러지 및 화학 원료 물질을 미세 입자 단위까지 초고속 분리, 정제하는 첨단 하이테크 환경 설비 시스템입니다.</p></div>
-                    <div class="spec-group"><div class="spec-label">안정 제어 아키텍처</div><p class="spec-text">고속 가속 구동 시 발생하는 미세한 공진과 진동을 역 위상 제어로 억제하는 자동 밸런싱 모듈을 포함하여 기기 내구성을 대폭 신장시켰습니다.</p></div>
+                <div class="prod-info-left" style="text-align: center; margin-bottom: 20px; width: 100%;">
+                    <span class="prod-index">System 04</span>
+                    <h2 class="prod-title" style="margin-bottom: 15px;">고효율 원심분리기 시스템</h2>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1.16fr 1fr; gap: 50px; width: 100%; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 50px; border-radius: 12px; align-items: start;">
+                    <div class="pdf-viewer-container">
+                        <div class="viewer-controls-header">
+                            <div class="viewer-tabs">
+                                <button class="viewer-tab-btn active" id="centrifugeTabDrawing" onclick="switchCentrifugeView('drawing')">📐 도면보기</button>
+                                <button class="viewer-tab-btn" id="centrifugeTabFile" onclick="switchCentrifugeView('file')">📄 사양서보기</button>
+                            </div>
+                            <button class="pdf-zoom-trigger-btn" id="centrifugeZoomBtn" onclick="openMaxPdfModal('files/필터 원심 분리기 제품 사양 ROAD.pdf', '원심분리기 제품 사양서')">🔍 사양서 크게보기</button>
+                        </div>
+
+                        <div class="slider-view-panel" id="centrifugeDrawingPanel">
+                            <div class="slide-track" id="blueprintTrack" style="width: 300%;">
+                                <div class="slide-item" style="width: 33.3333%;"><img src="images/oneshim.png" alt="Horizontal"></div>
+                                <div class="slide-item" style="width: 33.3333%;"><img src="images/vertical22.png" alt="Vertical"></div>
+                                <div class="slide-item" style="width: 33.3333%;"><img src="images/vertical33.png" alt="Vertical 2"></div>
+                            </div>
+                        </div>
+                        <div class="pdf-scroll-viewer" id="centrifugePdfPanel">
+                            <div class="pdf-status-text" id="centrifugePdfStatus">PDF 불러오는 중...</div>
+                        </div>
+                        <div class="slider-nav-container" id="centrifugeDrawingNav">
+                            <button class="slide-ctrl-btn" id="prevBtn" onclick="changeSlide(-1)" disabled>◀</button>
+                            <button class="slide-ctrl-btn" id="nextBtn" onclick="changeSlide(1)">▶</button>
+                        </div>
+                        <div class="patent-notice-tag">본 기술은 특허 출원 중인 당사 고유의 지적재산권입니다.</div>
+                        <a class="file-view-link" href="files/필터 원심 분리기 제품 사양 ROAD.pdf" target="_blank" rel="noopener">📄 필터 원심 분리기 제품 사양 ROAD.pdf 새 창 보기</a>
+                    </div>
+                    
+                    <div class="prod-data-right" style="padding: 0; background: none; border: none; align-self: flex-start;">
+                        <div class="spec-content-panel" style="margin-bottom: 30px;">
+                            <div class="spec-tab-view active">
+                                <table class="spec-table" style="font-size: 15px; margin-bottom: 0;">
+                                    <thead><tr><th>재질</th><th colspan="4">SUS (Stainless Steel)</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>R15</td><td>1500L</td><td>1100H</td><td>600W</td><td>표준형</td></tr>
+                                        <tr><td>R20</td><td>2000L</td><td>2000H</td><td>1000W</td><td>고용량</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="spec-group"><div class="spec-label">시스템 개요</div><p class="spec-text">원심력을 활용하여 복합 산업 슬러지 및 화학 원료 물질을 미세 입자 단위까지 초고속 분리, 정제하는 첨단 하이테크 환경 설비 시스템입니다.</p></div>
+                        <div class="spec-group"><div class="spec-label">안정 제어 아키텍처</div><p class="spec-text">고속 가속 구동 시 발생하는 미세한 공진과 진동을 역 위상 제어로 억제하는 자동 밸런싱 모듈을 포함하여 기기 내구성을 대폭 신장시켰습니다.</p></div>
+                    </div>
                 </div>
             </div>
 
@@ -403,33 +426,26 @@
                 <div class="product-info-side">
                     <span class="prod-index" style="margin-bottom:10px;">Technical Patent</span>
                     <h3 style="font-size: 24px; font-weight:800; color:#fff; margin-bottom:15px;">검증된 원심분리 고도 기술력</h3>
-                    <p style="color:#94a3b8; font-size:15px; line-height:1.7;">
+                    <p style="color:#94a3b8; font-size:15px; line-height:1.7; word-break: keep-all;">
                         로드(+ROAD)의 원심분리기 장치는 고속 제어 설계와 독자적인 아키텍처 기술이 결합되었습니다. 
                         출원번호통지서 통과 및 특허 인증 처리를 바탕으로 신뢰할 수 있는 구동 안정성을 입증합니다. 
-                        우측 실물 인증서 프레임을 클릭하시면 고해상도로 상세히 확인하실 수 있습니다.
+                        우측 특허증 액션을 클릭하시면 고해상도로 선명하게 확인하실 수 있습니다.
                     </p>
                 </div>
                 <div class="patent-showcase-side">
-                    <div class="patent-showcase-wrap">
-                        <div class="patent-showcase-header">
-                            <h4 class="patent-showcase-title">특허 인증 내역</h4>
+                    <div class="patent-step-badge" id="patentStepBadge">STEP 01 · 출원번호통지서</div>
+                    <div class="patent-cert-frame" onclick="openPatentLightbox()">
+                        <div class="patent-cert-track" id="patentTrack">
+                            <div class="patent-cert-slide"><img src="images/tt.jpg" alt="특허 출원번호통지서" class="patent-cert-image"></div>
+                            <div class="patent-cert-slide"><img src="images/t.jpg" alt="특허증" class="patent-cert-image"></div>
                         </div>
-                        <div class="patent-cert-stage">
-                            <div class="patent-step-badge" id="patentStepBadge">STEP 01 · 출원번호통지서</div>
-                            <div class="patent-cert-frame" onclick="openPatentLightbox()">
-                                <div class="patent-cert-track" id="patentTrack">
-                                    <div class="patent-cert-slide"><img src="images/tt.jpg" alt="특허 출원번호통지서" class="patent-cert-image"></div>
-                                    <div class="patent-cert-slide"><img src="images/t.jpg" alt="특허증" class="patent-cert-image"></div>
-                                </div>
-                                <div class="patent-zoom-hint">🔍 클릭하여 확대보기</div>
-                            </div>
-                            <div class="patent-nav-dots">
-                                <button class="patent-dot active" onclick="goPatentSlide(0)"></button>
-                                <button class="patent-dot" onclick="goPatentSlide(1)"></button>
-                            </div>
-                            <div class="patent-caption" id="patentCaption">특허 출원번호통지서 (출원 접수 완료)</div>
-                        </div>
+                        <div class="patent-zoom-hint">🔍 클릭하여 확대보기</div>
                     </div>
+                    <div class="patent-nav-dots">
+                        <button class="patent-dot active" onclick="goPatentSlide(0)"></button>
+                        <button class="patent-dot" onclick="goPatentSlide(1)"></button>
+                    </div>
+                    <div class="patent-caption" id="patentCaption">특허 출원번호통지서 (출원 접수 완료)</div>
                 </div>
             </div>
         </div>
@@ -514,8 +530,7 @@
             <div class="pdf-max-modal-title" id="pdfMaxModalTitle">사양서 크게보기</div>
             <button class="pdf-max-modal-close-btn" onclick="closeMaxPdfModal()">✕</button>
         </div>
-        <div class="pdf-max-modal-scroll-box" id="pdfMaxModalScrollBox">
-            </div>
+        <div class="pdf-max-modal-scroll-box" id="pdfMaxModalScrollBox"></div>
     </div>
 
     <div class="patent-lightbox" id="patentLightbox" onclick="closePatentLightbox()">
@@ -540,7 +555,6 @@
 
         let currentSlideIdx = 0, stopperSlideIdx = 0, autodoorSlideIdx = 0, patentSlideIdx = 0;
         
-        // System 04 원심분리기 도면 컨트롤
         function changeSlide(dir) {
             currentSlideIdx = Math.max(0, Math.min(2, currentSlideIdx + dir));
             document.getElementById('blueprintTrack').style.transform = `translateX(-${currentSlideIdx * (100 / 3)}%)`;
@@ -548,7 +562,6 @@
             document.getElementById('nextBtn').disabled = (currentSlideIdx === 2);
         }
         
-        // System 03 레일 스토퍼 도면 컨트롤
         function changeStopperSlide(dir) {
             stopperSlideIdx = Math.max(0, Math.min(1, stopperSlideIdx + dir));
             document.getElementById('stopperTrack').style.transform = `translateX(-${stopperSlideIdx * 50}%)`;
@@ -556,8 +569,6 @@
             document.getElementById('stopperNextBtn').disabled = (stopperSlideIdx === 1);
         }
 
-        // System 07 자동 도어 도면 컨트롤
-        const autodoorLabels = ['구성도', '설치도'];
         function changeAutodoorSlide(dir) {
             autodoorSlideIdx = Math.max(0, Math.min(1, autodoorSlideIdx + dir));
             document.getElementById('autodoorTrack').style.transform = `translateX(-${autodoorSlideIdx * 50}%)`;
@@ -566,7 +577,6 @@
             document.getElementById('autodoorCaption').innerText = autodoorLabels[autodoorSlideIdx];
         }
 
-        // 특허 슬라이더
         const patentLabels = [
             { badge: 'STEP 01 · 출원번호통지서', caption: '특허 출원번호통지서 (출원 접수 완료)' },
             { badge: 'STEP 02 · 특허증', caption: '특허증 (정식 등록 완료)' }
@@ -590,9 +600,6 @@
             document.body.style.overflow = '';
         }
 
-        /* ===================== PDF & 탭 뷰어 로직 ===================== */
-
-        // System 02 초고온 로봇 탭 전환
         let robotPdfLoaded = false;
         function switchRobotView(mode) {
             const drawingPanel = document.getElementById('robotDrawingPanel');
@@ -620,7 +627,6 @@
             }
         }
 
-        // System 04 원심분리기 탭 전환
         let centrifugePdfLoaded = false;
         function switchCentrifugeView(mode) {
             const drawingPanel = document.getElementById('centrifugeDrawingPanel');
@@ -651,7 +657,6 @@
             }
         }
 
-        // 공통: PDF 일반 인라인 박스 스크롤 렌더링
         function renderPdfScroll(url, containerId, statusId) {
             const container = document.getElementById(containerId);
             const statusEl = document.getElementById(statusId);
@@ -680,7 +685,6 @@
             });
         }
 
-        // ★ 공통 신규 기능: 사양서 화면 가득 크게보기 모달 엔진
         function openMaxPdfModal(url, titleText) {
             const modal = document.getElementById('pdfMaxOverlayModal');
             const scrollBox = document.getElementById('pdfMaxModalScrollBox');
@@ -693,16 +697,14 @@
             if (typeof pdfjsLib === 'undefined') return;
 
             pdfjsLib.getDocument(encodeURI(url)).promise.then(function (pdf) {
-                scrollBox.innerHTML = ''; // 로딩 텍스트 삭제
+                scrollBox.innerHTML = '';
                 const renderFullPage = function (num) {
                     pdf.getPage(num).then(function (page) {
-                        // 1.8배 스케일로 PC 화면에서 선명하고 아주 큼직하게 렌더링
                         const viewport = page.getViewport({ scale: 1.8 });
                         const canvas = document.createElement('canvas');
                         canvas.width = viewport.width;
                         canvas.height = viewport.height;
                         scrollBox.appendChild(canvas);
-                        
                         const ctx = canvas.getContext('2d');
                         page.render({ canvasContext: ctx, viewport: viewport });
                         if (num < pdf.numPages) renderFullPage(num + 1);
@@ -717,10 +719,9 @@
         function closeMaxPdfModal() {
             document.getElementById('pdfMaxOverlayModal').classList.remove('active');
             document.body.style.overflow = '';
-            document.getElementById('pdfMaxModalScrollBox').innerHTML = ''; // 리소스 정리
+            document.getElementById('pdfMaxModalScrollBox').innerHTML = '';
         }
 
-        // System 01 자율주행 카메라 (페이지 플립 방식)
         let cameraPdfDoc = null, cameraPdfPage = 1, cameraPdfPageCount = 0;
         function initCameraPdf() {
             if (typeof pdfjsLib === 'undefined') return;
@@ -757,7 +758,6 @@
         }
         document.addEventListener('DOMContentLoaded', initCameraPdf);
 
-        // 구글 번역
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({ pageLanguage: 'ko', includedLanguages: 'ko,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
         }
@@ -775,4 +775,4 @@
     </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
-</html>ㅍ
+</html>
