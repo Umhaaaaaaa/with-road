@@ -13,7 +13,7 @@
         .goog-te-banner-frame, .skiptranslate, #goog-gt-tt { display: none !important; }
         body { top: 0px !important; }
 
-        /* 1. 상단 내비게이션 바 (중앙 정렬 보완) */
+        /* 1. 상단 내비게이션 바 */
         header {
             position: fixed; top: 0; left: 0; width: 100%; display: grid;
             grid-template-columns: 1fr auto 1fr; align-items: center; padding: 0 8%; height: 85px;
@@ -64,7 +64,7 @@
         .sub-visual-title { font-size: 46px; font-weight: 800; color: #ffffff; letter-spacing: -0.5px; margin-bottom: 12px; }
         .sub-visual-subtitle { font-size: 15px; font-weight: 600; color: #D4B996; text-transform: uppercase; letter-spacing: 3px; }
 
-        /* 대시보드 버튼 바 (★중앙 정렬 및 정렬 한계값 세팅) */
+        /* 대시보드 버튼 바 */
         .dashboard-section { background-color: #060d1f; padding: 30px 8%; border-bottom: 1px solid rgba(255,255,255,0.05); position: sticky; top: 85px; z-index: 900; backdrop-filter: blur(10px); background: rgba(6, 13, 31, 0.9); }
         .dashboard-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(7, 1fr); gap: 15px; width: 100%; }
         .prod-btn { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); border-top: 3px solid rgba(212, 185, 150, 0.3); border-radius: 4px; padding: 22px 10px; text-align: center; cursor: pointer; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 8px; }
@@ -73,14 +73,14 @@
         .prod-btn:hover { background: linear-gradient(180deg, rgba(90, 62, 43, 0.15) 0%, rgba(3, 8, 19, 0.4) 100%); border-color: #D4B996; border-top-color: #D4B996; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
         .prod-btn:hover .btn-name { color: #ffffff; }
 
-        /* 제품 상세 레이아웃 (★확실하게 가로 중앙 정렬을 보장하는 블록 세팅) */
+        /* 제품 상세 레이아웃 */
         .products-container-section { background-color: #030813; width: 100%; display: flex; flex-direction: column; align-items: center; }
         .product-detail-block { padding: 100px 8%; border-bottom: 1px solid rgba(255, 255, 255, 0.04); display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: start; width: 100%; max-width: 1400px; margin: 0 auto; }
         .product-detail-block:nth-child(even) { grid-template-columns: 1.2fr 1fr; }
         .product-detail-block:nth-child(even) .prod-info-left { order: 2; }
         .product-detail-block:nth-child(even) .prod-data-right { order: 1; }
 
-        /* 이미지 없는 블록 (★중앙 정렬 패딩 마진 보정) */
+        /* 이미지 없는 블록 */
         .no-image-block { display: block !important; max-width: 1400px !important; margin: 0 auto; }
         .no-image-block .prod-info-left { text-align: center; margin-bottom: 30px; }
         .no-image-block .prod-data-right { max-width: 900px; margin: 0 auto; }
@@ -99,11 +99,12 @@
         /* 와이드 단독 구조 중앙화 처리 */
         .separator-wide-block { grid-template-columns: 1fr !important; gap: 30px !important; }
         .separator-dashboard { display: grid; grid-template-columns: 1.16fr 1fr; gap: 50px; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 50px; border-radius: 12px; align-items: start; width: 100%; }
-        .slider-view-panel { position: relative; width: 100%; background: #ffffff; border-radius: 8px; padding: 25px 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); overflow: hidden; }
+        .slider-view-panel { position: relative; width: 100%; background: #ffffff; border-radius: 8px; padding: 25px 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); overflow: hidden; height: 380px; display: flex; align-items: center; justify-content: center; }
         .slide-track { display: flex; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); width: 100%; }
         .slide-item { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; width: 100%; }
-        .slide-item img { max-width: 100%; height: auto; object-fit: contain; }
-        .blueprint-canvas { width: 100%; height: auto; max-height: 380px; object-fit: contain; }
+        
+        /* 이미지 크기 표준 공통 규격 고정 */
+        .slide-item img, .blueprint-canvas { width: 100%; height: auto; max-height: 330px; object-fit: contain; display: block; margin: 0 auto; }
         
         .slider-nav-container { display: flex; justify-content: center; gap: 15px; margin-top: 25px; }
         .slide-ctrl-btn { background: #091224; border: 1px solid rgba(255, 255, 255, 0.15); color: #D4B996; padding: 12px 24px; font-size: 16px; font-weight: 700; border-radius: 4px; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px; letter-spacing: 1px; }
@@ -113,7 +114,7 @@
         .patent-notice-tag { margin-top: 20px; text-align: center; padding: 12px; background: rgba(214, 185, 150, 0.06); border: 1px solid rgba(214, 185, 150, 0.2); border-radius: 4px; font-size: 13.5px; color: #D4B996; font-weight: 600; letter-spacing: 0.5px; display: flex; align-items: center; justify-content: center; gap: 8px; }
         .patent-notice-tag::before { content: '⚖'; font-size: 14px; }
 
-        /* 파일(PDF) 뷰어 스타일 */
+        /* 파일(PDF) 뷰어 공통 스타일 */
         .viewer-tabs { display: flex; gap: 10px; margin-bottom: 14px; }
         .viewer-tab-btn { flex: 1; background: #091224; border: 1px solid rgba(255,255,255,0.15); color: #94a3b8; font-size: 14px; font-weight: 700; padding: 12px; border-radius: 4px; cursor: pointer; transition: all 0.2s ease; letter-spacing: 0.3px; }
         .viewer-tab-btn:hover:not(.active) { border-color: #D4B996; color: #D4B996; }
@@ -156,7 +157,6 @@
             color: #cbd5e1; 
         }
 
-        /* 04 원심분리기 하단 특허 영역 정렬 보완 */
         .product-patent-container {
             display: flex; gap: 40px; align-items: stretch; margin-top: 40px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.06); width: 100%;
         }
@@ -166,39 +166,6 @@
             text-align: center; margin-top: 14px; font-size: 13px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px; 
             background: rgba(255,255,255,0.04); padding: 7px 0; border-radius: 4px; 
         }
-
-        /* 특허 인증서 쇼케이스 */
-        .patent-showcase-wrap { margin-top: 15px; }
-        .patent-showcase-header { text-align: left; margin-bottom: 18px; }
-        .patent-showcase-title { font-size: 20px; font-weight: 800; color: #ffffff; margin-top: 4px; letter-spacing: -0.3px; }
-        .patent-cert-stage { width: 100%; position: relative; }
-        .patent-step-badge {
-            position: absolute; top: -14px; left: 18px; z-index: 5;
-            background: linear-gradient(135deg, #D4B996 0%, #B8996E 100%);
-            color: #1a120a; font-size: 11px; font-weight: 800; letter-spacing: 0.5px;
-            padding: 6px 14px; border-radius: 20px; box-shadow: 0 4px 12px rgba(212,185,150,0.3);
-        }
-        .patent-cert-frame {
-            position: relative; background: #ffffff; border-radius: 6px; padding: 14px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(212,185,150,0.2);
-            overflow: hidden; cursor: zoom-in; transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .patent-cert-frame::before {
-            content: ''; position: absolute; inset: 7px; border: 1px solid rgba(90,62,43,0.2); border-radius: 3px; pointer-events: none;
-        }
-        .patent-cert-frame:hover { transform: translateY(-3px); box-shadow: 0 28px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(212,185,150,0.35); }
-        .patent-cert-track { display: flex; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); width: 200%; }
-        .patent-cert-slide { width: 50%; flex-shrink: 0; }
-        .patent-cert-image { width: 100%; height: auto; display: block; border-radius: 2px; }
-        .patent-zoom-hint {
-            position: absolute; bottom: 20px; right: 20px; background: rgba(3,8,19,0.8); color: #D4B996;
-            font-size: 11px; font-weight: 600; padding: 6px 12px; border-radius: 20px; opacity: 0; transition: opacity 0.3s ease;
-        }
-        .patent-cert-frame:hover .patent-zoom-hint { opacity: 1; }
-        .patent-nav-dots { display: flex; justify-content: center; gap: 8px; margin-top: 15px; }
-        .patent-dot { width: 7px; height: 7px; border-radius: 50%; border: none; background: rgba(255,255,255,0.2); cursor: pointer; transition: all 0.3s ease; padding: 0; }
-        .patent-dot.active { background: #D4B996; width: 22px; border-radius: 4px; }
-        .patent-caption { text-align: center; margin-top: 12px; font-size: 13px; color: #cbd5e1; font-weight: 600; }
 
         /* 라이트박스 전체화면 모달 */
         .patent-lightbox {
@@ -211,7 +178,7 @@
         .patent-lightbox-close:hover { color: #D4B996; }
         @keyframes patentFadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* 푸터 영역 중앙화 매칭 */
+        /* 푸터 영역 */
         footer { background-color: #01050d; padding: 60px 8%; border-top: 1px solid rgba(255, 255, 255, 0.05); text-align: left; width: 100%; }
         .footer-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 40px; align-items: flex-start; width: 100%; }
         .footer-brand { justify-self: start; }
@@ -308,23 +275,24 @@
         </div>
 
         <div class="product-detail-block separator-wide-block" id="prod-robot">
-            <div class="prod-info-left" style="text-align: center;"><span class="prod-index">System 02</span><h2 class="prod-title" style="margin-bottom: 25px;">초고온 측정 로봇 시스템</h2></div>
+            <div class="prod-info-left" style="text-align: center;">
+                <span class="prod-index">System 02</span>
+                <h2 class="prod-title" style="margin-bottom: 25px;">초고온 측정 로봇 시스템</h2>
+            </div>
             <div class="separator-dashboard">
                 <div>
-                    <div class="slider-view-panel">
-                        <div id="robotTrack" style="width: 500%; display: flex; transition: transform 0.5s;">
-                            <div class="slide-item"><img src="images/2.png" alt="도면1"></div>
-                            <div class="slide-item"><img src="images/3.png" alt="도면2"></div>
-                            <div class="slide-item"><img src="images/4.png" alt="도면3"></div>
-                            <div class="slide-item"><img src="images/5.png" alt="도면4"></div>
-                            <div class="slide-item"><img src="ss.png" alt="초고온 측정 로봇 도면 추가" style="width: 100%; height: auto;"></div>
-                        </div>
+                    <div class="viewer-tabs">
+                        <button class="viewer-tab-btn active" id="robotTabDrawing" onclick="switchRobotView('drawing')">📐 도면보기</button>
+                        <button class="viewer-tab-btn" id="robotTabFile" onclick="switchRobotView('file')">📄 사양서보기</button>
                     </div>
-                    <div class="slider-nav-container">
-                        <button class="slide-ctrl-btn" id="robotPrevBtn" onclick="changeRobotSlide(-1)" disabled>◀</button>
-                        <button class="slide-ctrl-btn" id="robotNextBtn" onclick="changeRobotSlide(1)">▶</button>
+                    <div class="slider-view-panel" id="robotDrawingPanel">
+                        <div class="slide-item"><img src="ss.png" alt="초고온 측정 로봇 도면"></div>
+                    </div>
+                    <div class="pdf-scroll-viewer" id="robotPdfPanel">
+                        <div class="pdf-status-text" id="robotPdfStatus">PDF 불러오는 중...</div>
                     </div>
                     <div class="patent-notice-tag">본 기술은 특허 출원 중인 당사 고유의 지적재산권입니다.</div>
+                    <a class="file-view-link" href="files/내화벽돌 측정 로봇 사양서 260624 ROAD.pdf" target="_blank" rel="noopener">📄 내화벽돌 측정 로봇 사양서 ROAD.pdf 새 창 보기</a>
                 </div>
                 <div class="prod-data-right" style="padding: 0; background: none; border: none;">
                     <div class="spec-group"><div class="spec-label">시스템 개요</div><p class="spec-text">고로 및 연주 공정 등 접근이 불가능한 초고온 가혹 환경에 직접 투입되어 정밀 내부 데이터를 수집하는 특수 지능형 로봇 제어 시스템입니다.</p></div>
@@ -339,8 +307,8 @@
                 <div>
                     <div class="slider-view-panel">
                         <div class="slide-track" id="stopperTrack" style="width: 200%;">
-                            <div class="slide-item" style="width: 50%;"><img src="images/STO.jpg" alt="Stopper 1" class="blueprint-canvas"></div>
-                            <div class="slide-item" style="width: 50%;"><img src="images/STO2.jpg" alt="Stopper 2" class="blueprint-canvas"></div>
+                            <div class="slide-item" style="width: 50%;"><img src="images/STO.jpg" alt="Stopper 1"></div>
+                            <div class="slide-item" style="width: 50%;"><img src="images/STO2.jpg" alt="Stopper 2"></div>
                         </div>
                     </div>
                     <div class="slider-nav-container">
@@ -365,9 +333,9 @@
                     </div>
                     <div class="slider-view-panel" id="centrifugeDrawingPanel">
                         <div class="slide-track" id="blueprintTrack" style="width: 300%;">
-                            <div class="slide-item" style="width: 33.3333%;"><img src="images/oneshim.png" alt="Horizontal" class="blueprint-canvas"></div>
-                            <div class="slide-item" style="width: 33.3333%;"><img src="images/vertical22.png" alt="Vertical" class="blueprint-canvas"></div>
-                            <div class="slide-item" style="width: 33.3333%;"><img src="images/vertical33.png" alt="Vertical 2" class="blueprint-canvas"></div>
+                            <div class="slide-item" style="width: 33.3333%;"><img src="images/oneshim.png" alt="Horizontal"></div>
+                            <div class="slide-item" style="width: 33.3333%;"><img src="images/vertical22.png" alt="Vertical"></div>
+                            <div class="slide-item" style="width: 33.3333%;"><img src="images/vertical33.png" alt="Vertical 2"></div>
                         </div>
                     </div>
                     <div class="pdf-scroll-viewer" id="centrifugePdfPanel">
@@ -378,7 +346,7 @@
                         <button class="slide-ctrl-btn" id="nextBtn" onclick="changeSlide(1)">▶</button>
                     </div>
                     <div class="patent-notice-tag">본 기술은 특허 출원 중인 당사 고유의 지적재산권입니다.</div>
-                    <a class="file-view-link" href="files/필터 원심 분리기 제품 사양 ROAD.pdf" target="_blank" rel="noopener">📄 필터 원심 분리기 제품 사양 ROAD.pdf 새 창에서 보기</a>
+                    <a class="file-view-link" href="files/필터 원심 분리기 제품 사양 ROAD.pdf" target="_blank" rel="noopener">📄 필터 원심 분리기 제품 사양 ROAD.pdf 새 창 보기</a>
                 </div>
                 <div class="spec-content-panel">
                     <div class="spec-tab-view active">
@@ -451,8 +419,8 @@
                 <div>
                     <div class="slider-view-panel" style="overflow: hidden;">
                         <div class="slide-track" id="autodoorTrack" style="width: 200%; display: flex; transition: transform 0.5s ease;">
-                            <div class="slide-item" style="width: 50%;"><img src="images/out1.png" alt="구성도" class="blueprint-canvas"></div>
-                            <div class="slide-item" style="width: 50%;"><img src="images/outin.png" alt="설치도" class="blueprint-canvas"></div>
+                            <div class="slide-item" style="width: 50%;"><img src="images/out1.png" alt="구성도"></div>
+                            <div class="slide-item" style="width: 50%;"><img src="images/outin.png" alt="설치도"></div>
                         </div>
                     </div>
                     <div class="slider-nav-container">
@@ -523,10 +491,9 @@
             }
         }
 
-        // 각 슬라이더 인덱스 관리자 전역 변수
-        let currentSlideIdx = 0, robotSlideIdx = 0, stopperSlideIdx = 0, autodoorSlideIdx = 0, patentSlideIdx = 0;
+        let currentSlideIdx = 0, stopperSlideIdx = 0, autodoorSlideIdx = 0, patentSlideIdx = 0;
         
-        // System 04 원심분리기 기본 도면 트랙 컨트롤 (3장 구성)
+        // System 04 원심분리기 도면 컨트롤
         function changeSlide(dir) {
             currentSlideIdx = Math.max(0, Math.min(2, currentSlideIdx + dir));
             document.getElementById('blueprintTrack').style.transform = `translateX(-${currentSlideIdx * (100 / 3)}%)`;
@@ -534,15 +501,7 @@
             document.getElementById('nextBtn').disabled = (currentSlideIdx === 2);
         }
         
-        // System 02 초고온 측정 로봇 시스템 도면 제어 (5장 구성으로 변경)
-        function changeRobotSlide(dir) {
-            robotSlideIdx = Math.max(0, Math.min(4, robotSlideIdx + dir)); 
-            document.getElementById('robotTrack').style.transform = `translateX(-${robotSlideIdx * 20}%)`;
-            document.getElementById('robotPrevBtn').disabled = (robotSlideIdx === 0);
-            document.getElementById('robotNextBtn').disabled = (robotSlideIdx === 4); 
-        }
-        
-        // System 03 레일 스토퍼 시스템 도면 제어
+        // System 03 레일 스토퍼 도면 컨트롤
         function changeStopperSlide(dir) {
             stopperSlideIdx = Math.max(0, Math.min(1, stopperSlideIdx + dir));
             document.getElementById('stopperTrack').style.transform = `translateX(-${stopperSlideIdx * 50}%)`;
@@ -550,7 +509,7 @@
             document.getElementById('stopperNextBtn').disabled = (stopperSlideIdx === 1);
         }
 
-        // System 07 자동 도어 장치 도면 전환 및 동적 하단 글씨(캡션) 매칭 로직
+        // System 07 자동 도어 도면 컨트롤
         const autodoorLabels = ['구성도', '설치도'];
         function changeAutodoorSlide(dir) {
             autodoorSlideIdx = Math.max(0, Math.min(1, autodoorSlideIdx + dir));
@@ -560,7 +519,7 @@
             document.getElementById('autodoorCaption').innerText = autodoorLabels[autodoorSlideIdx];
         }
 
-        // 원심분리기 기술 특허 슬라이더 레이블 및 인터랙션 스크립트
+        // 특허 슬라이더
         const patentLabels = [
             { badge: 'STEP 01 · 출원번호통지서', caption: '특허 출원번호통지서 (출원 접수 완료)' },
             { badge: 'STEP 02 · 특허증', caption: '특허증 (정식 등록 완료)' }
@@ -573,7 +532,6 @@
             document.querySelectorAll('.patent-dot').forEach((dot, i) => dot.classList.toggle('active', i === idx));
         }
 
-        // 모달 라이트박스 제어 기법 (확대 시 본체 스크롤 중지 차단 기믹 포함)
         function openPatentLightbox() {
             const imgSrc = patentSlideIdx === 0 ? 'images/tt.jpg' : 'images/t.jpg';
             document.getElementById('patentLightboxImg').src = imgSrc;
@@ -585,9 +543,34 @@
             document.body.style.overflow = '';
         }
 
-        /* ===================== PDF 파일 뷰어 로직 (pdf.js) ===================== */
+        /* ===================== PDF & 탭 뷰어 로직 (개편 핵심) ===================== */
 
-        // System 04 원심분리기 - "파일보기" 탭 전환 (도면 슬라이더 ↔ PDF 스크롤 뷰어)
+        // System 02 초고온 로봇 탭 전환
+        let robotPdfLoaded = false;
+        function switchRobotView(mode) {
+            const drawingPanel = document.getElementById('robotDrawingPanel');
+            const pdfPanel = document.getElementById('robotPdfPanel');
+            const tabDrawing = document.getElementById('robotTabDrawing');
+            const tabFile = document.getElementById('robotTabFile');
+
+            if (mode === 'drawing') {
+                drawingPanel.style.display = 'flex';
+                pdfPanel.classList.remove('active');
+                tabDrawing.classList.add('active');
+                tabFile.classList.remove('active');
+            } else {
+                drawingPanel.style.display = 'none';
+                pdfPanel.classList.add('active');
+                tabDrawing.classList.remove('active');
+                tabFile.classList.add('active');
+                if (!robotPdfLoaded) {
+                    robotPdfLoaded = true;
+                    renderPdfScroll('files/내화벽돌 측정 로봇 사양서 260624 ROAD.pdf', 'robotPdfPanel', 'robotPdfStatus');
+                }
+            }
+        }
+
+        // System 04 원심분리기 탭 전환
         let centrifugePdfLoaded = false;
         function switchCentrifugeView(mode) {
             const drawingPanel = document.getElementById('centrifugeDrawingPanel');
@@ -615,7 +598,7 @@
             }
         }
 
-        // 공통: PDF 전체 페이지를 스크롤 형태로 순차 렌더링
+        // 공통: PDF 스크롤 렌더링
         function renderPdfScroll(url, containerId, statusId) {
             const container = document.getElementById(containerId);
             const statusEl = document.getElementById(statusId);
@@ -644,7 +627,7 @@
             });
         }
 
-        // System 01 자율주행 카메라 - PDF 페이지 넘김(플립) 뷰어
+        // System 01 자율주행 카메라 (페이지 플립 방식)
         let cameraPdfDoc = null, cameraPdfPage = 1, cameraPdfPageCount = 0;
         function initCameraPdf() {
             if (typeof pdfjsLib === 'undefined') return;
@@ -681,7 +664,7 @@
         }
         document.addEventListener('DOMContentLoaded', initCameraPdf);
 
-        // 구글 번역 연동 환경
+        // 구글 번역
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({ pageLanguage: 'ko', includedLanguages: 'ko,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
         }
